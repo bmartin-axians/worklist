@@ -1,0 +1,55 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.hella.ppm.WorkPackage.controller.Edit"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:form="sap.ui.layout.form">
+	<App>
+		<pages>
+			<Page title="{i18n>title_edit} {edit>/TaskText}">
+				<content>
+					<form:SimpleForm layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false"
+						emptySpanXL="2" emptySpanL="2" emptySpanM="2" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2">
+						<Title text="{i18n>status_severity}"/>
+						<Label text="{i18n>severity}"/>
+						<HBox width="100%">
+							<HBox width="10%">
+								<core:Icon width="10%" src="{edit>/SevIcon}" color="{edit>/SevColor}"/>
+							</HBox>
+							<HBox class="box">
+								<ComboBox class="comboBox" id="selectSeverity" selectedKey="{edit>/Severity}" items="{/DropDownSet}">
+									<core:Item key="{Value}" text="{Text}"/>
+								</ComboBox>
+							</HBox>
+						</HBox>
+						<Label text="{i18n>current_status}"/>
+						<Input value="{edit>/StatusText}" editable="false"/>
+						<Label text="{i18n>new_status}"/>
+						<ComboBox id="selectStatus" selectedKey="" items="{/DropDownSet}">
+							<core:Item key="{Value}" text="{Text}" />
+						</ComboBox>
+						<Label text="{i18n>note}"/>
+						<TextArea id="noteInput" value=""/>
+					</form:SimpleForm>
+					<form:SimpleForm layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false"
+						emptySpanXL="2" emptySpanL="2" emptySpanM="2" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2">
+						<Title text="{i18n>completion}"/>
+						<Label text="{i18n>result}"/>
+						<ComboBox id="selectResult" selectedKey="{edit>/ResultText}" items="{/DropDownSet}">
+							<core:Item key="{Text}" text="{Text}" />
+						</ComboBox>
+					</form:SimpleForm>
+					<form:SimpleForm layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false"
+						emptySpanXL="2" emptySpanL="2" emptySpanM="2" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2">
+						<Title text="{i18n>dates}"/>
+						<Label text="{i18n>actual_finish}"/>
+						<DatePicker id="actualFinish" value="{path: 'edit>/ActualFinish', type:'sap.ui.model.type.Date', formatOptions : { pattern:'dd.MM.yyyy'}}"/>
+					</form:SimpleForm>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="{i18n>save}" type="Emphasized" press="onSaveButtonPress"/>
+						<Button text="{i18n>cancel}" press="onCancelButtonPress"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,98 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.hella.ppm.WorkPackage.controller.Detail" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:form="sap.ui.layout.form">
+	<App>
+		<pages>
+			<Page title="{i18n>title_detail}" >
+				<content>
+					<ObjectHeader backgroundDesign="Translucent" responsive="true" title="{detail>/TaskText}" numberState="Error" numberUnit="{detail>/OverdueUnitText}"
+						number="{detail>/Overdue}">
+						<statuses>
+							<ObjectStatus text="{detail>/SeverityText}"/>
+						</statuses>
+						<attributes>
+							<ObjectAttribute text="{detail>/ResponsibleRole}"/>
+							<ObjectAttribute text="{detail>/ResponsibleName}"/>
+							<ObjectAttribute text="{detail>/ProjectText}"/>
+						</attributes>
+					</ObjectHeader>
+					<IconTabBar expandable="false">
+						<items>
+							<IconTabFilter text="{i18n>general_data}" icon="sap-icon://hint">
+								<form:SimpleForm layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false"
+									emptySpanXL="2" emptySpanL="2" emptySpanM="2" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2">
+									<Label text="{i18n>WP_description}"/>
+									<Text text="{detail>/Description}"/>
+									<Label text="{i18n>responsible_role}"/>
+									<Text text="{detail>/ResponsibleRole}"/>
+									<Label text="{i18n>responsible_name}"/>
+									<Text text="{detail>/ResponsibleName}"/>
+									<Label text="{i18n>status}"/>
+									<Text text="{detail>/StatusText}"/>
+								</form:SimpleForm>
+								<form:SimpleForm layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false"
+									emptySpanXL="2" emptySpanL="2" emptySpanM="2" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2">
+									<Title text="{i18n>work_progress}"/>
+									<Label text="{i18n>result}"/>
+									<Text text="{detail>/ResultText}"/>
+									<Label text="{i18n>status}"/>
+									<Text text="{detail>/StatusText}"/>
+									<Label text="{i18n>severity}"/>
+									<Text text="{detail>/SeverityText}"/>
+								</form:SimpleForm>
+								<form:SimpleForm layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false"
+									emptySpanXL="2" emptySpanL="2" emptySpanM="2" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2">
+									<Title text="{i18n>schedule}"/>
+									<Label text="{i18n>earliest_finish}"/>
+									<Text text="{path: 'detail>/EarliestFinish', type:'sap.ui.model.type.Date', formatOptions : { pattern:'dd.MM.yyyy'}}" />
+									<Label text="{i18n>latest_finish}"/>
+									<Text text="{path: 'detail>/LatestFinish', type:'sap.ui.model.type.Date', formatOptions : { pattern:'dd.MM.yyyy'}}" />
+									<Label text="{i18n>actual_finish}"/>
+									<Text text="{path: 'detail>/ActualFinish', type:'sap.ui.model.type.Date', formatOptions : { pattern:'dd.MM.yyyy'}}" />
+								</form:SimpleForm>
+							</IconTabFilter>
+							<IconTabFilter text="{i18n>notes}" icon="sap-icon://notes" count="{detail>/NumberOfNotes}">
+								<FeedInput id="inputNote" post="onNotePostButtonPress" placeholder="{i18n>post}"/>
+								<List showSeparators="Inner" mode="SingleSelectMaster" id="idNoteList" items="{note>/results/}">
+									<FeedListItem sender="{note>NoteAuthor}" timestamp="{path: 'note>NoteCreatedAt', formatter:'mylop.util.Formatter.formatterCreatedAt'}" text="{note>NoteText}"/>
+								</List>
+							</IconTabFilter>
+							<IconTabFilter text="{i18n>outputs}" icon="sap-icon://activities" count="{detail>/NumberOfOutputs}">
+								<Table items="{output>/results/}">
+									<headerToolbar>
+										<Toolbar>
+											<ToolbarSpacer/>
+											<Button icon="sap-icon://add" press="onDocAddButton"/>
+										</Toolbar>
+									</headerToolbar>
+									<columns>
+										<Column>
+											<Text text="{i18n>doc_link}"/>
+										</Column>
+										<Column>
+											<Text text="{i18n>description}"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Link href="{output>Url}" text="{output>Url}"/>
+												<Text text="{output>Description}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="{i18n>edit}" type="Emphasized" press="onEditButtonPress"/>
+						<Button text="{i18n>sendMail}" press="onSendMailButtonPress" visible="false"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

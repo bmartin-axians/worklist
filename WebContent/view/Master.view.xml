@@ -1,0 +1,50 @@
+<mvc:View
+	controllerName="com.hella.ppm.WorkPackage.controller.Master"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<App id="app">
+		<pages>
+			<Page id="page" title="{i18n>title_master}" showNavButton="true" navButtonPress=".onPressBack"><!-- 16.06.21: added back btn -->
+				<content>
+					<List itemPress="onTaskItemPress" mode="SingleSelectMaster" id="idMasterList" items="{master>/}">
+<!-- 						<headerToolbar> -->
+<!-- 							<Toolbar> -->
+<!-- 								<SearchField liveChange="onSearchHandle" -->
+<!-- 									value="{view>/searchInput}" placeholder="{i18n>search}" /> -->
+<!-- 							</Toolbar> -->
+<!-- 						</headerToolbar> -->
+						<infoToolbar>
+							<Toolbar active="true" press="onRefreshPress">
+								<core:Icon src="sap-icon://synchronize" />
+								<Text text="{i18n>refresh}" />
+							</Toolbar>
+						</infoToolbar>
+						<items>
+							<ObjectListItem title="{master>TaskName}"
+								type="Active" 
+								number="{master>Overdue}"
+								numberUnit="{master>OverdueUnitText}" numberState="Error">
+								
+								<firstStatus>
+									<ObjectStatus text="{master>ProjectText}" />
+								</firstStatus>
+								<secondStatus>
+									<ObjectStatus icon="sap-icon://leads" visible="{master>Responsible}" />
+								</secondStatus>								
+							</ObjectListItem>
+						</items>
+					</List>
+				</content>
+<!-- 				<footer> -->
+<!-- 					<Toolbar> -->
+<!-- 						<ToolbarSpacer /> -->
+<!-- 						<Button icon="sap-icon://filter" -->
+<!-- 							press="onFilterButtonPress" /> -->
+<!-- 						<Button icon="sap-icon://group-2" -->
+<!-- 							press="onGroupButtonPress" /> -->
+<!-- 					</Toolbar> -->
+<!-- 				</footer> -->
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

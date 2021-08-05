@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ResponsivePopover showHeader="false" horizontalScrolling="false" placement="Top" showArrow="false">
+		<Panel>
+			<List items="{local>/Filter}" showSeparators="None" mode="SingleSelectMaster" itemPress="onFilterItemPress">
+				<items>
+					<ObjectListItem title="{local>value}" selected="{=${local>key} === ${view>/selectedFilter}? true: false}"  type="Active"/>
+				</items>
+			</List>
+		</Panel>
+	</ResponsivePopover>
+</core:FragmentDefinition>
